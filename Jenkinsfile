@@ -24,15 +24,15 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                bat 'docker build -t devops-project .'
+                sh 'docker build -t devops-project .'
             }
         }
 
         stage('Deploy') {
             steps {
-                bat 'docker stop devops-container || exit 0'
-                bat 'docker rm devops-container || exit 0'
-                bat 'docker run -d -p 8080:80 --name devops-container devops-project'
+                sh 'docker stop devops-container || exit 0'
+                sh 'docker rm devops-container || exit 0'
+                sh 'docker run -d -p 8080:80 --name devops-container devops-project'
             }
         }
     }
