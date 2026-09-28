@@ -6,7 +6,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'YOUR_GITHUB_REPOSITORY_URL'
+                    url: 'https://github.com/khushinjagad/lab11.git'
             }
         }
 
@@ -30,9 +30,9 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'docker stop devops-container || exit 0'
-                sh 'docker rm devops-container || exit 0'
-                sh 'docker run -d -p 8080:80 --name devops-container devops-project'
+                sh 'docker stop devops-container || true'
+                sh 'docker rm devops-container || true'
+                sh 'docker run -d -p 8081:80 --name devops-container devops-project'
             }
         }
     }
